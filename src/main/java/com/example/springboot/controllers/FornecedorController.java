@@ -28,32 +28,32 @@ public class FornecedorController {
 	FornecedorRepository FornecedorRepository;
 	
 	@GetMapping("/fornecedores")
-	public ResponseEntity<List<FornecedorModel>> getAllClientes(){
+	public ResponseEntity<List<FornecedorModel>> getAllFornecedores(){
 		List<FornecedorModel> fornecedoresList = FornecedorRepository.findAll();
 		return ResponseEntity.status(HttpStatus.OK).body(fornecedoresList);
 	}
 
 	@GetMapping("/fornecedores/{id}")
-	public ResponseEntity<Object> getOneCliente(@PathVariable(value="id") UUID id){
+	public ResponseEntity<Object> getOneFornecedor(@PathVariable(value="id") UUID id){
 		Optional<FornecedorModel> fornecedorO = FornecedorRepository.findById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(fornecedorO.get());
 	}
 	
 	@PostMapping("/fornecedores")
-	public ResponseEntity<FornecedorModel> saveCliente(@RequestBody @Valid FornecedorRecord FornecedorRecord) {
+	public ResponseEntity<FornecedorModel> saveFornecedor(@RequestBody @Valid FornecedorRecord FornecedorRecord) {
 		var FornecedorModel = new FornecedorModel();
 		BeanUtils.copyProperties(FornecedorRecord, FornecedorModel);
 		return ResponseEntity.status(HttpStatus.CREATED).body(FornecedorRepository.save(FornecedorModel));
 	}
 	
 	@DeleteMapping("/fornecedores/{id}")
-	public ResponseEntity<Object> deleteCliente(@PathVariable(value="id") UUID id) {
+	public ResponseEntity<Object> deleteFornecedor(@PathVariable(value="id") UUID id) {
 		Optional<FornecedorModel> fornecedorO = FornecedorRepository.findById(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Fornecedor deleted successfully.");
 	}
 	
 	@PutMapping("/fornecedores/{id}")
-	public ResponseEntity<Object> updateCliente(@PathVariable(value="id") UUID id,
+	public ResponseEntity<Object> updateFornecedor(@PathVariable(value="id") UUID id,
 													  @RequestBody @Valid FornecedorRecord FornecedorRecord) {
 		Optional<FornecedorModel> fornecedorO = FornecedorRepository.findById(id);
 		var FornecedorModel = fornecedorO.get();
