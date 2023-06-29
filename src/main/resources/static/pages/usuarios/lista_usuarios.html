@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+</head>
+<body>
+    <h1>Lista de Usuários</h1>
+    <br>
+    <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Login</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Dados da tabela serão inseridos aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        // Faz uma solicitação GET para a API
+        fetch('/usuarios')
+            .then(response => response.json())
+            .then(data => {
+            // Manipula os dados recebidos para criar as linhas da tabela
+            const tableBody = document.getElementById('table-body');
+            
+            data.forEach(usuario => {
+                const row = document.createElement('tr');
+                const idCell = document.createElement('td');
+                const nomeCell = document.createElement('td');                
+                const emailCell = document.createElement('td');
+                const loginCell = document.createElement('td');                
+
+                idCell.textContent = usuario.idUsuario;
+                nomeCell.textContent = usuario.nome;
+                emailCell.textContent = usuario.email;
+                loginCell.textContent = usuario.login;                  
+
+                row.appendChild(idCell);
+                row.appendChild(nomeCell);                
+                row.appendChild(emailCell);
+                row.appendChild(loginCell);                
+
+                tableBody.appendChild(row);
+            });
+        });
+    </script>
+</body>
+</html>
