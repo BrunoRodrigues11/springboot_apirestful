@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import jakarta.persistence.*;
 
-
 import org.springframework.hateoas.RepresentationModel;
 
 @Entity

@@ -1,0 +1,12 @@
+body{
+    background: #E4E9F7;
+}
+
+.selected{
+    background-color: blue;
+    color: #FFF;
+}
+
+.selected:hover{
+    color: #FFF;
+}
